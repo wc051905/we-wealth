@@ -9,7 +9,7 @@ chen:
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: D:/chen/uploadPath
+  profile: E:/home/uploadPath
   # 获取ip地址开关
   addressEnabled: false
 
@@ -99,7 +99,7 @@ shiro:
     # 首页地址
     indexUrl: /index
     # 验证码开关
-    captchaEnabled: true
+    captchaEnabled: false
     # 验证码类型 math 数组计算 char 字符
     captchaType: math
   cookie:
@@ -141,3 +141,11 @@ xss:
 swagger:
   # 是否开启swagger
   enabled: true
+
+  # 文件上传
+servlet:
+  multipart:
+    # 单个文件大小
+    max-file-size:  5000000000000000MB
+    # 设置总上传的文件大小
+    max-request-size:  100000000000000000MB

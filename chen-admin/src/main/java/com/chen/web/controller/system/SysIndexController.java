@@ -4,13 +4,15 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+
+import com.chen.common.annotation.Log;
+import com.chen.common.enums.BusinessType;
+import com.chen.common.utils.*;
+import com.chen.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.chen.common.config.ChenConfig;
 import com.chen.common.constant.ShiroConstants;
 import com.chen.common.core.controller.BaseController;
@@ -18,10 +20,6 @@ import com.chen.common.core.domain.AjaxResult;
 import com.chen.common.core.domain.entity.SysMenu;
 import com.chen.common.core.domain.entity.SysUser;
 import com.chen.common.core.text.Convert;
-import com.chen.common.utils.CookieUtils;
-import com.chen.common.utils.DateUtils;
-import com.chen.common.utils.ServletUtils;
-import com.chen.common.utils.StringUtils;
 import com.chen.framework.shiro.service.SysPasswordService;
 import com.chen.system.service.ISysConfigService;
 import com.chen.system.service.ISysMenuService;
@@ -42,6 +40,9 @@ public class SysIndexController extends BaseController
 
     @Autowired
     private SysPasswordService passwordService;
+
+    @Autowired
+    private ISysUserService userService;
 
     // 系统首页
     @GetMapping("/index")
@@ -174,5 +175,19 @@ public class SysIndexController extends BaseController
             return DateUtils.differentDaysByMillisecond(nowDate, pwdUpdateDate) > passwordValidateDays;
         }
         return false;
+    }
+
+
+    @Log(title = "语言切换", businessType = BusinessType.OTHER)
+    @GetMapping("/lang")
+    public String lang(@RequestParam(name = "i18n_language", required = false) String language){
+        if(language!=null && !"".equals(language)){
+            SysUser user = ShiroUtils.getSysUser();
+            user.setLanguage(language);
+            ShiroUtils.setSysUser(user);
+            userService.updateUserLanguage(user);
+
+        }
+        return "redirect:/index";
     }
 }

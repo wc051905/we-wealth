@@ -101,6 +101,8 @@ public class SysUser extends BaseEntity
     /** 岗位组 */
     private Long[] postIds;
 
+    private String  Language;
+
     public SysUser()
     {
 
@@ -352,6 +354,14 @@ public class SysUser extends BaseEntity
     public void setPostIds(Long[] postIds)
     {
         this.postIds = postIds;
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+
+    public void setLanguage(String language) {
+        Language = language;
     }
 
     @Override

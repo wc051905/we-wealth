@@ -218,6 +218,8 @@ public class ShiroConfig
         manager.setCacheManager(getEhCacheManager());
         // 删除过期的session
         manager.setDeleteInvalidSessions(true);
+        manager.setSessionIdCookieEnabled(true);
+        manager.setSessionIdCookie(sessionIdCookie());
         // 设置全局session超时时间
         manager.setGlobalSessionTimeout(expireTime * 60 * 1000);
         // 去掉 JSESSIONID
@@ -231,6 +233,20 @@ public class ShiroConfig
         // 自定义sessionFactory
         manager.setSessionFactory(sessionFactory());
         return manager;
+    }
+
+    private SimpleCookie sessionIdCookie() {
+
+        SimpleCookie cookie = new SimpleCookie();
+
+        cookie.setName("USERSESSIONID");
+
+        cookie.setHttpOnly(true);
+
+        cookie.setMaxAge(maxAge * 24 *60 *60);
+
+        return cookie;
+
     }
 
     /**
@@ -277,6 +293,7 @@ public class ShiroConfig
         // Shiro连接约束配置，即过滤链的定义
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 对静态资源设置匿名访问
+        filterChainDefinitionMap.put("/websocket/**", "anon");
         filterChainDefinitionMap.put("/favicon.ico**", "anon");
         filterChainDefinitionMap.put("/ruoyi.png**", "anon");
         filterChainDefinitionMap.put("/html/**", "anon");

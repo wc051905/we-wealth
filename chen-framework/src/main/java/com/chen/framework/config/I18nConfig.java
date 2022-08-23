@@ -1,6 +1,8 @@
 package com.chen.framework.config;
 
 import java.util.Locale;
+
+import com.chen.framework.resolver.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class I18nConfig implements WebMvcConfigurer
 {
-    @Bean
+/*    @Bean
     public LocaleResolver localeResolver()
     {
         SessionLocaleResolver slr = new SessionLocaleResolver();
@@ -39,5 +41,10 @@ public class I18nConfig implements WebMvcConfigurer
     public void addInterceptors(InterceptorRegistry registry)
     {
         registry.addInterceptor(localeChangeInterceptor());
+    }*/
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new MyLocaleResolver();
     }
 }

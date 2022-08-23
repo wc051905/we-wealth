@@ -2,6 +2,9 @@ package com.chen.web.controller.system;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.chen.common.core.domain.entity.SysUser;
+import com.chen.system.service.ISysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -37,6 +40,9 @@ public class SysLoginController extends BaseController
     @Autowired
     private ConfigService configService;
 
+    @Autowired
+    private ISysUserService userService;
+
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, ModelMap mmap)
     {
@@ -61,7 +67,8 @@ public class SysLoginController extends BaseController
         try
         {
             subject.login(token);
-            return success();
+            SysUser user = userService.selectUserByLoginName(username);
+            return success(user);
         }
         catch (AuthenticationException e)
         {

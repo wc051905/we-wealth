@@ -547,4 +547,9 @@ public class SysUserServiceImpl implements ISysUserService
     {
         return userMapper.updateUser(user);
     }
+
+    @Override
+    public int updateUserLanguage(SysUser user) {
+        return userMapper.updateUserLanguage(user);
+    }
 }

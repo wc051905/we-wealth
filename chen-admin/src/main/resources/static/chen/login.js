@@ -30,8 +30,17 @@ function login() {
             "rememberMe": rememberMe
         },
         success: function(r) {
+            console.log(r)
             if (r.code == web_status.SUCCESS) {
-                location.href = ctx + 'index';
+                var language = r.data.language;
+                if(language == '' || language==null){
+                    language = 'zh_CN';
+                    $.cookie('language', 'zh_CN');
+                }else{
+                    $.cookie('language', language);
+                }
+                window.location.href = ctx + "lang?i18n_language=" + language;
+                // location.href = ctx + 'index';
             } else {
                 $('.imgcode').click();
                 $(".code").val("");

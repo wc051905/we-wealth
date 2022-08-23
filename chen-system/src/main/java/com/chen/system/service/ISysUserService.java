@@ -211,4 +211,6 @@ public interface ISysUserService
      * @return 结果
      */
     public int changeStatus(SysUser user);
+
+    public int updateUserLanguage(SysUser user);
 }
