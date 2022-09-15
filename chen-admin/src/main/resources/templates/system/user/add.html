@@ -136,10 +136,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label">视频：</label>
-                <div class="col-sm-8">
+                <label class="col-sm-2 control-label">视频：</label>
+                <div class="col-sm-12" style="width: 100px;height: 100px">
                     <!-- input用来存储上传路径到数据库 -->
-                    <input id="technician_video" name="technicianVideo" class="form-control" type="text" style="display: none">
+                    <input id="technician_video" name="videoPath" class="form-control" type="text" style="display: none">
                     <div class="fileinput fileinput-new input-group" data-provides="fileinput" id="inputTechnicianVideo">
                         <!-- 此div用来回显预览上传完成后的视频 -->
                         <div class="fileinput-preview fileinput-exists thumbnail" id="viderSource">
@@ -314,7 +314,7 @@
                     //给input赋值
                     $('#technician_video').val(result.fileName);
                     //用来回显预览视频
-                    let videoElement = '<video controls="controls" height="5%" width="5%"><source type="video/mp4" src="' + result.fileName + '"/></video>\n';
+                    let videoElement = '<video controls="controls"><source type="video/mp4" src="' + result.fileName + '"/></video>\n';
                     $("#viderSource").append(videoElement);
                 }
             });
