@@ -27,5 +27,16 @@ public class ChenApplication
                 " |  | \\ `'   /|   `-'  /           \n" +
                 " |  |  \\    /  \\      /           \n" +
                 " ''-'   `'-'    `-..-'              ");
+       /* String s1="张三";
+        String s4="张三";
+        String s2=new String("张三");
+        String s3=new String("张三").intern();
+        System.out.print(s1 == s2);
+        System.out.print(s1.equals(s2));
+        System.out.print(s3==s1);
+        System.out.print(s3==s1);
+        System.out.print(s4.equals(s1));*/
     }
+
+
 }

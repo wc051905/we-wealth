@@ -103,6 +103,8 @@ public class SysUser extends BaseEntity
 
     private String  Language;
 
+    private String  videoPath;
+
     public SysUser()
     {
 
@@ -362,6 +364,14 @@ public class SysUser extends BaseEntity
 
     public void setLanguage(String language) {
         Language = language;
+    }
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
     }
 
     @Override

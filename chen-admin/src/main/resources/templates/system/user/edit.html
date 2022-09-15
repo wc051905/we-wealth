@@ -121,6 +121,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">视频：</label>
+                    <div class="col-xs-10" style="width: 300px;height: 300px">
+                        <video controls="controls"><source type="video/mp4" th:src="${user.videoPath}"/></video>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
     <div class="row">
@@ -133,7 +141,7 @@
 	<th:block th:include="include :: select2-js" />
 	<script type="text/javascript">
         var prefix = ctx + "system/user";
-        
+        console.log(user.videoPath)
         $("#form-user-edit").validate({
         	onkeyup: false,
         	rules:{
